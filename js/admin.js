@@ -1,50 +1,42 @@
-import { auth } from "./firebase.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { db, collection, getDocs } from "./firebase.js";
+import { db } from "./firebase.js";
+import { collection, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// Redirect non-logged-in users
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    window.location.href = "admin-login.html";
-  } else {
-    loadOrders();
+const statusMessage = document.getElementById("statusMessage");
+const ordersBody = document.getElementById("ordersBody");
+
+function renderOrders(snapshot) {
+  ordersBody.innerHTML = "";
+
+  if (snapshot.empty) {
+    statusMessage.textContent = "No orders yet.";
+    return;
   }
-});
 
-// Logout functionality
-document.getElementById("logoutBtn").addEventListener("click", async () => {
-  await signOut(auth);
-  window.location.href = "admin-login.html";
-});
+  snapshot.forEach((doc) => {
+    const data = doc.data();
 
-// Load orders from Firestore
-async function loadOrders() {
-  const ordersList = document.getElementById("ordersList");
-  ordersList.innerHTML = "<tr><td colspan='5'>Loading orders...</td></tr>";
+    const dateStr = data.timestamp?.toDate
+      ? data.timestamp.toDate().toLocaleString()
+      : "—";
 
-  try {
-    const querySnapshot = await getDocs(collection(db, "orders"));
-    ordersList.innerHTML = ""; // clear
+    const row = `
+      <tr>
+        <td>${data.name || "—"}</td>
+        <td>${data.phone || "—"}</td>
+        <td>${data.address || "—"}</td>
+        <td>${data.orderDetails || "—"}</td>
+        <td>${dateStr}</td>
+      </tr>`;
+    ordersBody.insertAdjacentHTML("beforeend", row);
+  });
 
-    if (querySnapshot.empty) {
-      ordersList.innerHTML = "<tr><td colspan='5'>No orders found yet.</td></tr>";
-      return;
-    }
+  statusMessage.textContent = "✅ Orders loaded.";
+}
 
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      const row = `
-        <tr>
-          <td>${data.name}</td>
-          <td>${data.phone}</td>
-          <td>${data.address}</td>
-          <td>${data.orderDetails}</td>
-          <td>${new Date(data.timestamp).toLocaleString()}</td>
-        </tr>`;
-      ordersList.innerHTML += row;
-    });
-  } catch (error) {
-    console.error("Error fetching orders: ", error);
-    ordersList.innerHTML = "<tr><td colspan='5'>Error loading orders.</td></tr>";
-  }
+try {
+  const q = query(collection(db, "orders"), orderBy("timestamp", "desc"));
+  onSnapshot(q, (snapshot) => renderOrders(snapshot));
+} catch (err) {
+  console.error("Error loading orders:", err);
+  statusMessage.textContent = "❌ Failed to load orders.";
 }

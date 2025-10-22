@@ -1,38 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tamu Express | Admin Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamu Express Admin</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="navbar">
-    <h1>Tamu Express Admin</h1>
-    <button id="logoutBtn">Logout</button>
-  </header>
+  <header>📦 Tamu Express Orders</header>
 
-  <main class="container">
-    <section class="orders">
-      <h2>Placed Orders</h2>
-      <table id="ordersTable">
-        <thead>
-          <tr>
-            <th>Customer</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Order</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody id="ordersList"></tbody>
-      </table>
-    </section>
-  </main>
+  <div id="statusMessage" style="text-align:center; margin-top:10px; font-weight:bold;">
+    Loading orders...
+  </div>
 
-  <footer>
-    <p>© 2025 Tamu Express | Admin Panel</p>
-  </footer>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Order Details</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody id="ordersBody"></tbody>
+  </table>
 
   <script type="module" src="js/firebase.js"></script>
   <script type="module" src="js/admin.js"></script>

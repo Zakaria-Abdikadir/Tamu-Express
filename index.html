@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tamu Express | Fresh Food Delivery</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamu Express</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="navbar">
-    <h1>Tamu Express</h1>
-    <p>Delivering fresh taste right to your door!</p>
-  </header>
+  <header>Tamu Express</header>
 
-  <main class="container">
-    <section class="order-section">
-      <h2>Place Your Order</h2>
-      <form id="orderForm">
-        <input type="text" id="name" placeholder="Your Full Name" required />
-        <input type="tel" id="phone" placeholder="Phone Number" required />
-        <input type="text" id="address" placeholder="Delivery Address" required />
-        <textarea id="orderDetails" placeholder="Order Details (e.g. 2x Chips, 1x Chicken)" required></textarea>
-        <button type="submit">Submit Order</button>
-      </form>
-      <p id="orderMessage"></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Tamu Express | All rights reserved</p>
-  </footer>
+  <form id="orderForm">
+    <h2>Place Your Order</h2>
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="tel" id="phone" placeholder="Phone Number" required>
+    <input type="text" id="address" placeholder="Delivery Address" required>
+    <textarea id="orderDetails" placeholder="Your Order Details" required></textarea>
+    <button type="submit">Submit Order</button>
+    <div id="orderMessage"></div>
+  </form>
 
   <script type="module" src="js/firebase.js"></script>
   <script type="module" src="js/order.js"></script>

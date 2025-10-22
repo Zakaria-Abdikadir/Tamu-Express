@@ -1,4 +1,5 @@
-import { db, collection, addDoc } from "./firebase.js";
+import { db } from "./firebase.js";
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const orderForm = document.getElementById("orderForm");
 const orderMessage = document.getElementById("orderMessage");
@@ -12,7 +13,7 @@ orderForm.addEventListener("submit", async (e) => {
   const orderDetails = document.getElementById("orderDetails").value.trim();
 
   if (!name || !phone || !address || !orderDetails) {
-    orderMessage.textContent = "⚠️ Please fill all fields.";
+    orderMessage.textContent = "⚠️ Please fill in all fields.";
     return;
   }
 
@@ -22,13 +23,13 @@ orderForm.addEventListener("submit", async (e) => {
       phone,
       address,
       orderDetails,
-      timestamp: new Date().toISOString()
+      timestamp: serverTimestamp()
     });
 
     orderMessage.textContent = "✅ Order placed successfully!";
     orderForm.reset();
   } catch (error) {
-    console.error("Error adding document: ", error);
+    console.error("Error placing order:", error);
     orderMessage.textContent = "❌ Failed to place order. Try again later.";
   }
 });
