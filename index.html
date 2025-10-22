@@ -3,84 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tamu Express | Umma University</title>
+  <title>Tamu Express | Fresh Food Delivery</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <div class="overlay">
-      <h1 class="title">🍔 Tamu Express</h1>
-      <p class="subtitle">The Smartest Way to Order Food at Umma University</p>
-      <a href="#order" class="btn-primary">Order Now</a>
-    </div>
+  <header class="navbar">
+    <h1>Tamu Express</h1>
+    <p>Delivering fresh taste right to your door!</p>
   </header>
 
-  <section id="about">
-    <h2>About Tamu Express</h2>
-    <p>
-      Tamu Express makes campus life easier by connecting students to their favorite food spots
-      around Umma University. No queues. No stress. Just delicious meals, fast delivery,
-      and smart digital payments.
-    </p>
-  </section>
-
-  <section id="how-it-works">
-    <h2>How It Works</h2>
-    <div class="steps">
-      <div class="card">
-        <span>1️⃣</span>
-        <p>Browse menus and select your meal from campus food spots.</p>
-      </div>
-      <div class="card">
-        <span>2️⃣</span>
-        <p>Pay KSh 40 service fee via M-Pesa PayBill <strong>0115613332</strong>.</p>
-      </div>
-      <div class="card">
-        <span>3️⃣</span>
-        <p>Pay your food cost directly to the hotel’s Till Number (shown at checkout).</p>
-      </div>
-      <div class="card">
-        <span>4️⃣</span>
-        <p>Collect your order at Gate A or Gate B — fast and fresh!</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="order">
-    <h2>Place Your Order</h2>
-    <form id="orderForm">
-      <input type="text" id="name" placeholder="Full Name" required />
-      <input type="tel" id="phone" placeholder="M-PESA Number" required />
-      <input type="text" id="food" placeholder="Your Meal (e.g. Chips Chicken)" required />
-      <textarea id="notes" placeholder="Additional notes (optional)"></textarea>
-      <button type="submit" class="btn-primary">Submit Order</button>
-      <p id="order-status"></p>
-    </form>
-  </section>
-
-  <section id="important">
-    <h2>Important Notice</h2>
-    <p>
-      Please ensure you use the <strong>same M-PESA number</strong> for payment and order form.
-      This helps our team confirm and process your order quickly.
-    </p>
-  </section>
-
-  <section id="benefits">
-    <h2>Why Choose Tamu Express?</h2>
-    <ul>
-      <li>⚡ Fast & Reliable Delivery</li>
-      <li>💳 Cashless Payments</li>
-      <li>📦 Real-time Order Updates</li>
-      <li>🥗 Affordable Campus Meals</li>
-      <li>🧠 Smart & Convenient</li>
-    </ul>
-  </section>
+  <main class="container">
+    <section class="order-section">
+      <h2>Place Your Order</h2>
+      <form id="orderForm">
+        <input type="text" id="name" placeholder="Your Full Name" required />
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <input type="text" id="address" placeholder="Delivery Address" required />
+        <textarea id="orderDetails" placeholder="Order Details (e.g. 2x Chips, 1x Chicken)" required></textarea>
+        <button type="submit">Submit Order</button>
+      </form>
+      <p id="orderMessage"></p>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Tamu Express | Developed with ❤️ by Zaki</p>
+    <p>© 2025 Tamu Express | All rights reserved</p>
   </footer>
+
   <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/order.js"></script>
 </body>
 </html>
