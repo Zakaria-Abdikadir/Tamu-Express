@@ -7,15 +7,36 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>Admin Login</header>
+  <div class="page-wrapper">
+    <header>
+      <div class="brand">
+        <span class="brand-icon">🔐</span>
+        <div>
+          <h1>Tamu Express Admin</h1>
+          <p class="tagline">Manage orders and keep deliveries on track</p>
+        </div>
+      </div>
+    </header>
 
-  <form id="loginForm">
-    <h2>Sign In</h2>
-    <input type="email" id="email" placeholder="Admin Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-    <div id="loginMessage"></div>
-  </form>
+    <main class="content">
+      <section class="card form-card">
+        <h2>Admin Sign In</h2>
+        <p class="section-subtitle">Secure access for authorized team members only.</p>
+        <form id="loginForm" novalidate>
+          <div class="input-group">
+            <label for="email">Admin Email</label>
+            <input type="email" id="email" placeholder="admin@tamuexpress.com" required />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required />
+          </div>
+          <button type="submit">Login</button>
+          <p id="loginMessage" class="feedback" role="alert"></p>
+        </form>
+      </section>
+    </main>
+  </div>
 
   <script type="module" src="js/firebase.js"></script>
   <script type="module" src="js/admin-login.js"></script>

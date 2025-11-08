@@ -7,24 +7,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>📦 Tamu Express Orders</header>
+  <div class="page-wrapper">
+    <header>
+      <div class="brand">
+        <span class="brand-icon">📦</span>
+        <div>
+          <h1>Tamu Express Orders</h1>
+          <p class="tagline">Real-time view of every request coming in</p>
+        </div>
+      </div>
+    </header>
 
-  <div id="statusMessage" style="text-align:center; margin-top:10px; font-weight:bold;">
-    Loading orders...
+    <main class="content wide">
+      <section class="card status-card">
+        <p id="statusMessage" class="status-message" role="status">
+          Loading orders...
+        </p>
+      </section>
+
+      <section class="card table-card">
+        <div class="table-header">
+          <h2>Live Order Feed</h2>
+          <p class="section-subtitle">Stay updated and fulfill deliveries fast.</p>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Order Details</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
   </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>Order Details</th>
-        <th>Timestamp</th>
-      </tr>
-    </thead>
-    <tbody id="ordersBody"></tbody>
-  </table>
 
   <script type="module" src="js/firebase.js"></script>
   <script type="module" src="js/admin.js"></script>

@@ -1,8 +1,17 @@
 import { db } from "./firebase.js";
-import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 const orderForm = document.getElementById("orderForm");
 const orderMessage = document.getElementById("orderMessage");
+
+const setFeedback = (element, message, type = "") => {
+  if (!element) return;
+  element.textContent = message;
+  element.classList.remove("success", "error");
+  if (type) {
+    element.classList.add(type);
+  }
+};
 
 orderForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -13,7 +22,7 @@ orderForm.addEventListener("submit", async (e) => {
   const orderDetails = document.getElementById("orderDetails").value.trim();
 
   if (!name || !phone || !address || !orderDetails) {
-    orderMessage.textContent = "⚠️ Please fill in all fields.";
+    setFeedback(orderMessage, "⚠️ Please fill in all fields.", "error");
     return;
   }
 
@@ -26,10 +35,10 @@ orderForm.addEventListener("submit", async (e) => {
       timestamp: serverTimestamp()
     });
 
-    orderMessage.textContent = "✅ Order placed successfully!";
+    setFeedback(orderMessage, "✅ Order placed successfully!", "success");
     orderForm.reset();
   } catch (error) {
     console.error("Error placing order:", error);
-    orderMessage.textContent = "❌ Failed to place order. Try again later.";
+    setFeedback(orderMessage, "❌ Failed to place order. Try again later.", "error");
   }
 });
